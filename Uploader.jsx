@@ -33,7 +33,6 @@ Uploader = React.createClass({
 					alert(error);
 				} else {
 					this.files[result] = file;
-					console.log("db result", this.files);
 					this.filesDependency.changed();
 				}
 			});

@@ -4,21 +4,18 @@ UploaderAttachment = React.createClass({
 	},
 
 	componentWillMount(){
-		//polling here, which is exactly what we're not supposed to have to do
-		//with Meteor???
-		var times = 0;
-		var repeat = setInterval( ()=>{
-			this.props.filesDependency.depend();
-			if( ! this.props.attachment.originalSrc){
-				console.log('ourname', this.props.attachment._id);
-				console.log(this.props.files);
-				var file = this.props.files[this.props.attachment._id];
-				if( file || ++times > 5 ){
-					clearInterval(repeat);
-					this.uploadAttachment(file);
-				} 
+		//have to defer, or else the files object doesn't actually have new
+		//stuff...?? maybe a Tracker bug??
+		Tracker.autorun( ()=> _.defer(this.eventuallyUpload) );
+	},
+	eventuallyUpload(){
+		this.props.filesDependency.depend();
+		if( ! this.props.attachment.originalSrc){
+			var file = this.props.files[this.props.attachment._id];
+			if( file ){
+				this.uploadAttachment(file);
 			}
-		}, 500);
+		}
 	},
 
 	uploadAttachment(file){
