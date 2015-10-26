@@ -13,10 +13,8 @@ Package.describe({
 Package.onUse(function(api) {
 //  api.versionsFrom('1.2.0.2');
   api.use('ecmascript');
-	api.use('autopublish');
 	api.use('edgee:slingshot');
 	api.use('es5-shim');
-	api.use('insecure');
 	api.use('less');
 	api.use('mobile-experience');
 	api.use('mongo');
@@ -30,6 +28,7 @@ Package.onUse(function(api) {
 	api.use('mrt:reactive-extra');
 	api.imply("accounts-password");
 	api.imply("accounts-ui");
+
 
   api.addFiles('meteor-gallery.js');
   api.addFiles('MeteorGallery.jsx');

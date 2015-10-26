@@ -1,3 +1,4 @@
+ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 Uploader = React.createClass({
 
 	files: {},
@@ -45,7 +46,10 @@ Uploader = React.createClass({
 				<header className="uploader-header">
 				</header>
 				<div className="uploader-body">
-					{this.renderAttachments()}
+					<ReactCSSTransitionGroup transitionName="uploader-attachment" 
+						transitionEnterTimeout="500" transitionLeaveTimeout="300">
+						{this.renderAttachments()}
+					</ReactCSSTransitionGroup>
 				</div>
 				<header className="uploader-footer well">
 					<button className="btn btn-default" onClick={this.addNewAttachment}>

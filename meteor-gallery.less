@@ -42,42 +42,57 @@
 			border: 1px solid #fff;
 			border-radius: 6px;
 			overflow: hidden;
-		}
-		.uploader-attachment .uploader-attachment-footer {
-			position: absolute;
-			bottom: 0;
-			width: 100%;
-		}
-		.uploader-attachment .uploader-attachment-body {
-			width: 100%;
-			height: 100%;
-			background-size: cover;
-			background-position: center;
-		}
-		.uploader-attachment .uploader-attachment-header {
-			position: absolute;
-			top: 0;
-			width: 100%;
-		}
-		.uploader-attachment .uploader-attachment-header .btn {
-			float: right;
-		}
-		.uploader-attachment img{
-			min-width: 100%;
-			min-height: 100%;
-			width: 100%;
-			height: auto;
-			overflow: hidden;
-		}
-		.uploader-attachment .progress {
-			margin-bottom: 0px;
-			background-color: rgba(255,255,255,.3);
-		}
-		.uploader-attachment .uploader-attachment-footer .glyphicon {
-			background-color: rgba(255,255,255,.7);
-			padding: 10px;
-			border-radius: 6px;
-			color: #5cb85c;
+
+			.uploader-attachment-footer {
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+			}
+			.uploader-attachment-body {
+				width: 100%;
+				height: 100%;
+				background-size: cover;
+				background-position: center;
+			}
+			.uploader-attachment-header {
+				position: absolute;
+				top: 0;
+				width: 100%;
+			}
+			.uploader-attachment-header .btn {
+				float: right;
+			}
+			img{
+				min-width: 100%;
+				min-height: 100%;
+				width: 100%;
+				height: auto;
+				overflow: hidden;
+			}
+			.progress {
+				margin-bottom: 0px;
+				background-color: rgba(255,255,255,.3);
+			}
+			.uploader-attachment-footer .glyphicon {
+				background-color: rgba(255,255,255,.7);
+				padding: 10px;
+				border-radius: 6px;
+				color: #5cb85c;
+			}
+			&.uploader-attachment-enter {
+				opacity: 0.01;
+			}
+			&.uploader-attachment-enter-active {
+				opacity: 1;
+				transition: opacity 500ms ease-in;
+			}
+			&.uploader-attachment-leave {
+				opacity: 1;
+			}
+			&.uploader-attachment-leave-active {
+				opacity: 0.01;
+				transition: opacity 300ms ease-in;
+			}
 		}
 	}
 }
