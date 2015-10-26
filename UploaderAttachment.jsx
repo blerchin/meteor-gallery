@@ -1,13 +1,24 @@
 UploaderAttachment = React.createClass({
 	removeAttachment(event){
-		Attachments.remove({_id: this.props.attachment._id});
+		Meteor.call("removeAttachment", this.props.attachment._id)
 	},
 
 	componentWillMount(){
-		if( ! this.props.attachment.originalSrc){
-			var file = this.props.files[this.props.attachment._id];
-			file && this.uploadAttachment(file);
-		}
+		//polling here, which is exactly what we're not supposed to have to do
+		//with Meteor???
+		var times = 0;
+		var repeat = setInterval( ()=>{
+			this.props.filesDependency.depend();
+			if( ! this.props.attachment.originalSrc){
+				console.log('ourname', this.props.attachment._id);
+				console.log(this.props.files);
+				var file = this.props.files[this.props.attachment._id];
+				if( file || ++times > 5 ){
+					clearInterval(repeat);
+					this.uploadAttachment(file);
+				} 
+			}
+		}, 500);
 	},
 
 	uploadAttachment(file){
@@ -23,11 +34,7 @@ UploaderAttachment = React.createClass({
 		if (error) {
 			alert(error);
 		} else {
-			Attachments.update(this.props.attachment._id, {
-				$set: {
-					originalSrc: attachmentUrl
-				}
-			});
+			Meteor.call("updateAttachment", this.props.attachment._id, attachmentUrl);
 		}
 	},
 	progressBar(){

@@ -1,6 +1,7 @@
 Uploader = React.createClass({
 
 	files: {},
+	filesDependency: new Tracker.Dependency,
 
 	renderAttachments(){
 		if( this.props.attachments.length > 0 ) {
@@ -9,6 +10,7 @@ Uploader = React.createClass({
 					key={attachment._id}
 					attachment={attachment}
 					files={this.files}
+					filesDependency={this.filesDependency}
 					/>;
 			});
 		} else {
@@ -24,11 +26,17 @@ Uploader = React.createClass({
 	},
 
 	uploadNewAttachment(event){
-		for( var i=0; i<event.target.files.length; i++ ) {
-			let attachmentId = Attachments.insert({
-				userId: this.props.currentUser._id
+		for( let i=0; i<event.target.files.length; i++ ) {
+			let file = event.target.files[i];
+			Meteor.call("addAttachment", "", (error, result)=>{
+				if(error){
+					alert(error);
+				} else {
+					this.files[result] = file;
+					console.log("db result", this.files);
+					this.filesDependency.changed();
+				}
 			});
-			this.files[attachmentId] = event.target.files[i];
 		};
 	},
 

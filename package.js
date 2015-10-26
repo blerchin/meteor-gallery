@@ -27,6 +27,7 @@ Package.onUse(function(api) {
 	api.use('standard-minifiers');
 	api.use('tracker');
 	api.use('reactive-var');
+	api.use('mrt:reactive-extra');
 	api.imply("accounts-password");
 	api.imply("accounts-ui");
 
