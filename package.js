@@ -12,23 +12,21 @@ Package.describe({
 
 Package.onUse(function(api) {
 //  api.versionsFrom('1.2.0.2');
-  api.use('ecmascript');
-	api.use('edgee:slingshot');
-	api.use('es5-shim');
-	api.use('less');
-	api.use('mobile-experience');
-	api.use('mongo');
-	api.use('meteor-base');
-	api.use('nemo64:bootstrap');
-	api.use('react');
-	api.use('session');
-	api.use('standard-minifiers');
-	api.use('tracker');
-	api.use('reactive-var');
-	api.use('mrt:reactive-extra');
-	api.use('check');
-	api.imply("accounts-password");
-	api.imply("accounts-ui");
+  api.use('ecmascript', '0.1.5');
+	api.use('edgee:slingshot', '0.7.1');
+	api.use('es5-shim', '4.1.13');
+	api.use('less', '2.5.0_3');
+	api.use('mobile-experience', '1.0.1');
+	api.use('mongo', '1.1.2');
+	api.use('meteor-base', '1.0.1');
+	api.use('nemo64:bootstrap', '3.3.5_2');
+	api.use('react', '0.1.13');
+	api.use('session', '1.1.1');
+	api.use('standard-minifiers', '1.0.1');
+	api.use('tracker', '1.0.9');
+	api.use('check', '1.1.0');
+	api.use('accounts-password', '1.1.3');
+	api.use('accounts-ui', '1.1.6');
 	api.addFiles('client/vendor/Sortable.js', ['client'], false);
 	api.addFiles('client/vendor/react-sortable-mixin.js', ['client'], false);
 
