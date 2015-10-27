@@ -27,6 +27,7 @@ Package.onUse(function(api) {
 	api.use('check@1.0.6');
 	api.use('accounts-password@1.1.3');
 	api.use('accounts-ui@1.1.6');
+	api.use('reactive-dict@1.1.2');
 	api.addFiles('client/vendor/Sortable.js', ['client'], false);
 	api.addFiles('client/vendor/react-sortable-mixin.js', ['client'], false);
 

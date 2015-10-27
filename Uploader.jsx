@@ -1,9 +1,4 @@
-ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 Uploader = React.createClass({
-
-	sortableOptions: {
-		draggable: '.upload-attachment'
-	},
 
 	files: {},
 	filesDependency: new Tracker.Dependency,
@@ -17,14 +12,17 @@ Uploader = React.createClass({
 	uploadNewAttachment(event){
 		for( let i=0; i<event.target.files.length; i++ ) {
 			let file = event.target.files[i];
-			Meteor.call("addAttachment", "", (error, result)=>{
+			//generate the id manually so we don't have to wait for ASYNC to add
+			//it to the files list.
+			let id = Attachments._makeNewID();
+			Meteor.call("addAttachment", id, (error, result)=>{
 				if(error){
 					alert(error);
 				} else {
-					this.files[result] = file;
 					this.filesDependency.changed();
 				}
 			});
+			this.files[id] = file;
 		};
 	},
 

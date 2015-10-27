@@ -4,19 +4,22 @@ UploaderAttachment = React.createClass({
 		Meteor.call("removeAttachment", this.props.attachment._id)
 	},
 
-	componentWillMount(){
-		//have to defer, or else the files object doesn't actually have new
-		//stuff...?? maybe a Tracker bug??
-		Tracker.autorun( ()=> _.defer(this.eventuallyUpload) );
+	componentDidMount(){
+		this.eventuallyUpload();
 	},
+
 	eventuallyUpload(){
-		this.props.filesDependency.depend();
 		if( ! this.props.attachment.originalSrc){
 			var file = this.props.files[this.props.attachment._id];
 			if( file ){
 				this.uploadAttachment(file);
 			}
 		}
+	},
+
+	getCurrentIndex(){
+		var node = this.getDOMNode();
+		return Array.prototype.indexOf.call(node.parentElement.childNodes, node);
 	},
 
 	uploadAttachment(file){
@@ -32,7 +35,10 @@ UploaderAttachment = React.createClass({
 		if (error) {
 			alert(error);
 		} else {
-			Meteor.call("updateAttachment", this.props.attachment._id, attachmentUrl);
+			Meteor.call("updateAttachment", 
+										this.props.attachment._id,
+										attachmentUrl,
+										this.getCurrentIndex() );
 		}
 	},
 	progressBar(){
