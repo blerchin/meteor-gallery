@@ -1,6 +1,6 @@
 Package.describe({
   name: 'blerchin:meteor-gallery',
-  version: '0.0.1',
+  version: '0.0.2',
   // Brief, one-line summary of the package.
   summary: 'A nice sortable image uploader on Amazon S3, built with Meteor and React.',
   // URL to the Git repository containing the source code for this package.

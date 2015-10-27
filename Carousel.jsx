@@ -12,7 +12,6 @@ Carousel = React.createClass({
 		} else {
 			return <div className="item active empty-message">
 				<p>Nothing uploaded yet.</p>
-				<p><a href="#" onClick={ this.goToUploader() }>Upload Files.</a></p>
 			</div>
 		}
 	},
