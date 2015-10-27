@@ -1,4 +1,5 @@
 UploaderAttachment = React.createClass({
+
 	removeAttachment(event){
 		Meteor.call("removeAttachment", this.props.attachment._id)
 	},

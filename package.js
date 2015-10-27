@@ -26,15 +26,18 @@ Package.onUse(function(api) {
 	api.use('tracker');
 	api.use('reactive-var');
 	api.use('mrt:reactive-extra');
+	api.use('check');
 	api.imply("accounts-password");
 	api.imply("accounts-ui");
-
+	api.addFiles('client/vendor/Sortable.js', ['client'], false);
+	api.addFiles('client/vendor/react-sortable-mixin.js', ['client'], false);
 
   api.addFiles('meteor-gallery.js');
   api.addFiles('MeteorGallery.jsx');
   api.addFiles('Carousel.jsx');
   api.addFiles('Attachment.jsx');
   api.addFiles('Uploader.jsx');
+  api.addFiles('UploaderList.jsx');
   api.addFiles('UploaderAttachment.jsx');
   api.addFiles('AccountsUIWrapper.jsx');
 

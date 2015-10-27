@@ -1,7 +1,8 @@
 Carousel = React.createClass({
 	renderAttachments(){
 		if( this.props.attachments.length > 0 ) {
-			return this.props.attachments.map((attachment, index) => {
+			return this.props.attachments.sort((a,b)=> a.weight > b.weight)
+				.map((attachment, index) => {
 				return <Attachment
 					key={attachment._id}
 					attachment={attachment}

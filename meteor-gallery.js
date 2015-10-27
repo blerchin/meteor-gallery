@@ -16,8 +16,10 @@ if (Meteor.isServer) {
 		return Attachments.find({
 			$and: [
 				{userId: this.userId}
-			]
-		});
+				]
+			},{
+				sort:{weight: 1}
+			});
 	});
 }
 
@@ -32,10 +34,21 @@ Meteor.methods({
 		});
 	},
 	updateAttachment(attachmentId, originalSrc){
+		check(attachmentId, String);
+		check(originalSrc, String);
 		Attachments.update(attachmentId, {
 			$set: {
-				originalSrc: originalSrc
+				originalSrc: originalSrc,
 			}
 		});
+	},
+	sortAttachments(attachmentIds){
+		check(attachmentIds, [String]);
+		for( let i=0; i<attachmentIds.length; i++){
+			Attachments.update(
+				{ _id: attachmentIds[i]},
+				{$set: {weight: i}}
+			);
+		}
 	}
 });
